@@ -18,9 +18,11 @@ export default {
   }),
   methods : {
     doLogout() {
-      this.$router.push('/login')
-      this.isAuthenticated = false
-      this.user = null
+      this.$http.post('/logout').then(() => {
+        this.$router.push('/login')
+        this.isAuthenticated = false
+        this.user = null
+      })
     },
     doLogin() {
       this.isAuthenticated = true
