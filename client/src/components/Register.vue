@@ -32,7 +32,7 @@ export default {
       this.$http.post('/register', user).then((res) => {
         this.$emit('register', res.data)
       }).catch(err => {
-        if(err.response.data.status === 500) {
+        if(err.response.data.status === 400) {
           alert(err.response.data.message)
         }
       })

@@ -27,10 +27,8 @@ export default {
     doLogin() {
       this.isAuthenticated = true
     },
-    doRegister(user) {
-      this.isAuthenticated = true
-      this.user = user
-      this.$router.push('/')
+    doRegister() {
+      this.$router.push('/login')
     },
     loadUser(){
       this.$http.get('/user/info').then((res) => {

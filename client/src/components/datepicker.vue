@@ -74,7 +74,6 @@ export default {
       this.fp = flatpickr(this.$refs.datepicker, {
         locale: Russian,
         enableTime: true,
-        dateFormat: 'Z',
         onChange: (selectedDates, dateStr) => {
           this.$emit('input', dateStr)
         }

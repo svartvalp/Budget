@@ -35,9 +35,11 @@
 
 
 import Datepicker from "@/components/datepicker";
+import moment from 'moment'
 export default {
   components: {Datepicker},
   mounted() {
+    console.log(moment())
     this.tryToLoadData()
   },
   methods : {
@@ -57,7 +59,7 @@ export default {
         userId : this.user.id,
         value : this.value,
         type : this.operType === 'Доход' ? 'INCOME' : 'OUTCOME',
-        operationTime : this.operTime,
+        operationTime : new Date(this.operTime),
         comment : this.comment
       }
       this.$http.post(`/monetary`, operation).then(res => {
@@ -65,7 +67,7 @@ export default {
         this.dialog = false
         this.value = 0
         this.operType = null
-        this.operTime = new Date().toISOString()
+        this.operTime = moment().format("YYYY-MM-DD HH:MM")
         this.filterItems()
         this.loadCurrentMoney()
       })
@@ -162,7 +164,7 @@ export default {
     ],
     dialog : false,
     operType : '',
-    operTime : new Date().toISOString(),
+    operTime : moment().format("YYYY-MM-DD HH:mm"),
     comment : '',
     value : 0
   })

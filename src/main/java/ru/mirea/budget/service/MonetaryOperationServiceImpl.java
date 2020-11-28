@@ -7,6 +7,8 @@ import ru.mirea.budget.dao.MonetaryOperationDao;
 import ru.mirea.budget.dto.AccountBudgetInfoDto;
 import ru.mirea.budget.entity.MonetaryOperation;
 
+import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.util.List;
 
 @Service
@@ -17,6 +19,7 @@ public class MonetaryOperationServiceImpl implements MonetaryOperationService {
 
     @Override
     public MonetaryOperation createMonetaryOp(MonetaryOperation operation) {
+        operation.setOperationTime(operation.getOperationTime().atOffset(ZoneOffset.UTC).atZoneSameInstant(ZoneId.systemDefault()).toLocalDateTime());
         operation.setId(null);
         return operationDao.save(operation);
     }
