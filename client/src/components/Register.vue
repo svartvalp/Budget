@@ -4,7 +4,13 @@
     <v-card width="400px">
       <v-container>
       <v-text-field label="Логин" v-model="login"></v-text-field>
-      <v-text-field label="Пароль" v-model="password"></v-text-field>
+      <v-text-field
+          label="Пароль"
+          v-model="password"
+          :append-icon="showPass ? 'mdi-eye' : 'mdi-eye-off'"
+          :type="showPass ? 'text' : 'password'"
+          @click:append="showPass = !showPass"
+      ></v-text-field>
       <v-text-field label="Имя" v-model="firstName"></v-text-field>
       <v-text-field label="Фамилия" v-model="lastName"></v-text-field>
         <v-row align="center" justify="center">
@@ -42,7 +48,8 @@ export default {
     login : '',
     password : '',
     firstName : '',
-    lastName : ''
+    lastName : '',
+    showPass : false
   })
 }
 </script>
