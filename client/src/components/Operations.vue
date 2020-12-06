@@ -67,7 +67,7 @@ export default {
         this.dialog = false
         this.value = 0
         this.operType = null
-        this.operTime = moment().format("YYYY-MM-DD HH:MM")
+        this.operTime = moment().format("YYYY-MM-DD HH:mm")
         this.filterItems()
         this.loadCurrentMoney()
       })
