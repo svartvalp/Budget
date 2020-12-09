@@ -41,4 +41,9 @@ public class MonetaryOperationServiceImpl implements MonetaryOperationService {
         dto.setCurrentMoney(value);
         return dto;
     }
+
+    @Override
+    public void deleteById(String id) {
+        operationDao.deleteById(id);
+    }
 }

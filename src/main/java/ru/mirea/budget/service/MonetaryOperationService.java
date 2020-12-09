@@ -9,4 +9,5 @@ public interface MonetaryOperationService {
     MonetaryOperation createMonetaryOp(MonetaryOperation operation);
     List<MonetaryOperation> getAllByUserId(String userId);
     AccountBudgetInfoDto getBudgetInfoByUserId(String userId);
+    void deleteById(String id);
 }

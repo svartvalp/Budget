@@ -31,4 +31,9 @@ public class MonetaryOperationController {
         return operationService.createMonetaryOp(monetaryOperation);
     }
 
+    @DeleteMapping(value = "/{id}")
+    public void deleteMonetaryOperationById(@PathVariable("id") String id) {
+        operationService.deleteById(id);
+    }
+
 }

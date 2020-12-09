@@ -27,7 +27,16 @@
     </div>
     <v-data-table
       :items="shownOperations"
-      :headers="headers"></v-data-table>
+      :headers="headers">
+      <template v-slot:item.actions="{ item }">
+        <v-icon
+            small
+            @click="deleteItem(item)"
+        >
+          mdi-delete
+        </v-icon>
+      </template>
+    </v-data-table>
   </v-card>
   </v-container>
 </template>
@@ -43,6 +52,14 @@ export default {
     this.tryToLoadData()
   },
   methods : {
+    deleteItem(item) {
+      this.$http.delete(`/monetary/${item.id}`).then(() => {
+        console.log("show")
+        this.operations = this.operations.filter(i => i.id !== item.id)
+        this.showOperations()
+        this.loadCurrentMoney()
+      })
+    },
     tryToLoadData() {
       if(this.user != null ) {
         this.loadCurrentMoney()
@@ -157,7 +174,8 @@ export default {
       {
         text: 'Комментарий',
         value: 'comment'
-      }
+      },
+      { text: 'Actions', value: 'actions', sortable: false },
     ],
     types : [
         "Доход", "Расход"
